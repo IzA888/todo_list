@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Box } from '@mui/material';
 import { useRouter } from 'next/router';
+import { loginUser } from '../services/api';
+import axios from 'axios';
 
 interface LoginProps {
-  onLogin: (username: string, password: string) => void;
+  //onLogin: (username: string, password: string) => void;
+  onLoginSuccess: (token: string) => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
@@ -14,25 +17,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/login', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const token = data.token;
-        localStorage.setItem('token', token); // Passa o token para o componente pai
-        router.push('/');
+      const data = await loginUser(username, password);
+      console.log('Login successful:', data);
+      router.push('/'); // Redireciona para a página de tarefas após o login
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const errorMessage = error.response?.data?.message || 'Failed to fetch todos';
+        console.error('Fetch Tasks Error:', errorMessage);
+        throw new Error(errorMessage);
       } else {
-        alert('Invalid username or password');
+        console.error('Fetch Tasks Error:', error);
+        throw new Error('Failed to fetch todos');
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred during login');
     }
   };
 

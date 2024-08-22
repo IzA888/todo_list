@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import HandleTarefa from '../../src/components/HandleTarefas';
+import HandleTarefa from '../components/HandleTarefas';
 import { useRouter } from 'next/router';
-import { fetchTasks, createTasks } from '../../src/services/api';
-import { Tasks } from '../../src/dashboard/Tasks';
+import { fetchTasks} from '../services/api';
+import { Tasks } from '../dashboard/Tasks';
+import { title } from 'process';
+
 
 const Home: React.FC = () => {
   const router = useRouter();
   const [tasks, setTasks] = useState<Tasks[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [error, setError] = useState<string>('');
+ 
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,16 +33,12 @@ const Home: React.FC = () => {
     }
   };
 
-  const handleAddTasks = async (title: string) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const newTasks: Tasks = await createTasks(title, token);
-      setTasks([...tasks, newTasks]);
-    }
-  };
-
+  
   return isAuthenticated ? (
-    <HandleTarefa tasks={tasks} setTasks={setTasks} onAddTasks={handleAddTasks} />
+    <div>
+      <HandleTarefa tasks={tasks} setTasks={setTasks} />
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </div>
   ) : null;
 };
 

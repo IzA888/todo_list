@@ -16,7 +16,7 @@ const Create: React.FC<createUserProps> = ({ oncreateUserSuccess }) => {
       await createUser(username, password);
       oncreateUserSuccess();
     } catch (e) {
-      setError('Failed to createUser');
+      setError('Failed to create user');
     }
   };
 

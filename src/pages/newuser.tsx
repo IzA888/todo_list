@@ -6,7 +6,7 @@ const CreatePage: React.FC = () => {
   const router = useRouter();
 
   const handleCreateSuccess = () => {
-    router.push('/login'); // Redireciona para a página de login após o registro
+    router.push('/user/login'); // Redireciona para a página de login após o registro
   };
 
   return <Create oncreateUserSuccess={handleCreateSuccess} />;
