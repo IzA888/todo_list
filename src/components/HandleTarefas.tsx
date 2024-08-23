@@ -3,6 +3,7 @@ import { Button, TextField, List, ListItem, ListItemText, IconButton, Typography
 import { Delete, Edit } from '@mui/icons-material';
 import { Tasks } from '../dashboard/Tasks';
 import { createTasks, updateTasks, deleteTasks } from '../services/api';
+import { useRouter } from 'next/router';
 
 
 interface HandleTarefaProps {
@@ -18,6 +19,7 @@ const HandleTarefa: React.FC<HandleTarefaProps> = ({ tasks, setTasks }) => {
   const [keyword, setKeyword] = useState('');
   const [title, setTitle] = useState('');
   const [error, setError] = React.useState<string>('');
+  const router = useRouter();
 
 
   const handleAddTasks = async () => {
@@ -61,7 +63,7 @@ const HandleTarefa: React.FC<HandleTarefaProps> = ({ tasks, setTasks }) => {
   const handleDeleteTasks = async (id: number) => {
     try {
       await deleteTasks(id, token);
-      setTasks(tasks.filter((task) => task.id !== id));
+      router.reload();
     } catch (error) {
       console.error('Failed to delete tasks:', error);
     }

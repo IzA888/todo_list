@@ -2,9 +2,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, create a paste '.env' with :
+
+NEXT_PUBLIC_API_URL = "http://127.0.0.1:3000"
+
+to configure the api
+
+Then, run the development server:
 
 ```bash
+npm run build
+#and
 npm run dev
 # or
 yarn dev
@@ -14,9 +22,9 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start creating the user by redirecting to `/newuser`.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { fetchTasks} from '../services/api';
 import { Tasks } from '../dashboard/Tasks';
 import { title } from 'process';
+import { Button } from '@mui/material';
 
 
 const Home: React.FC = () => {
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-      router.push('/login');
+      router.push('/user/login');
     } else {
       setIsAuthenticated(true);
       loadTasks(token);
@@ -33,10 +34,21 @@ const Home: React.FC = () => {
     }
   };
 
+  const handleProfileRedirect = () => {
+    router.push('/user/perfil'); // Redireciona para a página de perfil
+  };
   
   return isAuthenticated ? (
     <div>
       <HandleTarefa tasks={tasks} setTasks={setTasks} />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleProfileRedirect}
+        style={{ marginTop: '16px' }}
+      >
+        Go to Profile
+      </Button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   ) : null;

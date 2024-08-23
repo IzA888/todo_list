@@ -7,13 +7,14 @@ interface createUserProps {
 }
 
 const Create: React.FC<createUserProps> = ({ oncreateUserSuccess }) => {
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handlecreateUser = async () => {
     try {
-      await createUser(username, password);
+      await createUser(name, username, password);
       oncreateUserSuccess();
     } catch (e) {
       setError('Failed to create user');
@@ -24,6 +25,13 @@ const Create: React.FC<createUserProps> = ({ oncreateUserSuccess }) => {
     <div>
       <Typography variant="h4">Create Account</Typography>
       {error && <Typography color="error">{error}</Typography>}
+      <TextField
+        label="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        fullWidth
+        margin="normal"
+      />
       <TextField
         label="Username"
         value={username}

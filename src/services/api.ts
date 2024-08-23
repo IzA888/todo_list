@@ -20,6 +20,12 @@ export const loginUser = async (username: string, password: string) => {
       localStorage.setItem('token', token); // Armazena o token em localStorage
     }
 
+    const stroedId = response.data.id;
+
+    if (stroedId) {
+      localStorage.setItem('id', stroedId)
+    }
+
     return response.data; // Retorna os dados, que podem incluir o token JWT ou outras informações
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Login failed';
@@ -47,7 +53,7 @@ export const createTasks = async (title: string, token: string) => {
   try {
     const response = await axios.post(`${API_URL}/tasks`, {
       task: {
-      title: title,
+        title: title,
       },
     }, {
       headers: {
@@ -74,7 +80,7 @@ export const createTasks = async (title: string, token: string) => {
 // Função para atualizar tarefas
 export const updateTasks = async (id:number, title: string, completed: boolean, token: string) => {
   try {
-    const response = await axios.patch(`${API_URL}/tasks/${id}/edit`, {
+    const response = await axios.patch(`${API_URL}/tasks/${id}`, {
       task: {
       title: title,
       completed: completed
@@ -108,9 +114,9 @@ export const deleteTasks = async (id: number, token: string) => {
 };
 
 // Função para criar um novo usuário
-export const createUser = async (username: string, password: string) => {
+export const createUser = async (name:string, username: string, password: string) => {
   try {
-    const response = await axios.post(`${API_URL}/user`, { username, password }, {
+    const response = await axios.post(`${API_URL}/user`, { name, username, password }, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -127,7 +133,7 @@ export const fetchUserProfile = async (id: number, token: string) => {
   try {
     const response = await axios.get(`${API_URL}/user/${id}`, {
       headers: {
-        'Content-Type': 'application/json',
+ 
         'Authorization': `Bearer ${token}`,
       },
     });
