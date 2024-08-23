@@ -1,44 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# README
 
-## Getting Started
+## To-Do List 
 
-First, create a page '.env' with :
+### Descrição
 
-NEXT_PUBLIC_API_URL = "http://127.0.0.1:3000"
+Este é o frontend da aplicação de lista de tarefas, desenvolvido com **Next.js** e **TypeScript**. Ele fornece uma interface para os usuários interagirem com a API do backend.
 
-to configure the api
+### Tecnologias Utilizadas
 
-Then, run the development server:
+- Next.js
+- TypeScript
+- Material-UI (MUI)
+- Axios (para chamadas à API)
+- React
 
-```bash
-npm run build
-#and
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Instalação e Configuração
 
-Open [http://localhost:8000](http://localhost:8000) with your browser to see the result.
+1. **Clone o repositório:**
 
-You can start creating the user by redirecting to `/newuser`.
+   ```bash
+   git clone https://github.com/IzA888/todo_list.git)
+   cd todo_list
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. **Instale as dependências do projeto:**
 
-## Learn More
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Configure as variáveis de ambiente:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Crie um arquivo `.env.local` na raiz do diretório do frontend e adicione a seguinte variável:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+     ```env
+     NEXT_PUBLIC_API_URL=http://localhost:3000
+     ```
 
-## Deploy on Vercel
+4. **Inicie o servidor de desenvolvimento:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. **Verifique a Aplicação:**
+
+   - Abra um navegador e acesse [http://localhost:8000](http://localhost:8000) para visualizar a aplicação.
+
+### Funcionalidades
+
+- **Login de Usuário:**
+  - Realiza login e armazena o token de autenticação e o ID do usuário no `localStorage`.
+
+- **Lista de Tarefas:**
+  - Visualiza, adiciona, atualiza e exclui tarefas.
+  - Filtra a lista de tarefas com base em uma palavra-chave.
+
+- **Perfil do Usuário:**
+  - Visualiza informações do perfil do usuário e permite logout.
+
+### Estrutura de Diretórios
+
+- `src/`
+  - `components/` - Componentes reutilizáveis da aplicação.
+  - `pages/` - Páginas da aplicação Next.js.
+  - `services/` - Funções para fazer chamadas à API.
+
+
+---
