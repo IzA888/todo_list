@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, create a paste '.env' with :
+First, create a page '.env' with :
 
 NEXT_PUBLIC_API_URL = "http://127.0.0.1:3000"
 
