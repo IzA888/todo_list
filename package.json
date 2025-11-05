@@ -14,7 +14,7 @@
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "axios": "^1.7.4",
-    "next": "14.2.5",
+    "next": "14.2.33",
     "react": "^18",
     "react-dom": "^18",
     "todo_list": "file:"

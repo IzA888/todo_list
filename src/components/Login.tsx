@@ -3,6 +3,7 @@ import { TextField, Button, Container, Typography, Box } from '@mui/material';
 import { useRouter } from 'next/router';
 import { loginUser } from '../services/api';
 import axios from 'axios';
+import Link from 'next/link';
 
 interface LoginProps {
   //onLogin: (username: string, password: string) => void;
@@ -27,7 +28,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         throw new Error(errorMessage);
       } else {
         console.error('Fetch Tasks Error:', error);
-        throw new Error('Failed to fetch todos');
+        throw new Error('Failed to fetch tasks');
       }
     }
   };
@@ -71,6 +72,13 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           >
             Login
           </Button>
+          <Link href={'/createuser'}
+            color="primary"
+            type="submit"
+            style={{ marginTop: '1rem' }}
+          >
+            Cadastre-se
+          </Link>
         </form>
       </Box>
     </Container>
